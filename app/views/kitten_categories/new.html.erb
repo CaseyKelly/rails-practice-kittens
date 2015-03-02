@@ -3,7 +3,15 @@
 <%= image_tag @kitten.image %>
 
 <%= form_for [@kitten, @kitten_category] do |f| %>
-  <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: false}, {class: "form-control"} %>
+<% if @kitten_category.errors.any? %>
+<ul>
+  <% @kitten_category.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
 
-  <%= f.submit 'Add Category' %>
+<%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: true}, {class: "form-control"} %>
+
+<%= f.submit 'Add Category' %>
 <% end %>
