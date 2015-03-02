@@ -1,0 +1,9 @@
+<h1>Categorize</h1>
+
+<%= image_tag @kitten.image %>
+
+<%= form_for [@kitten, @kitten_category] do |f| %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: false}, {class: "form-control"} %>
+
+  <%= f.submit 'Add Category' %>
+<% end %>
